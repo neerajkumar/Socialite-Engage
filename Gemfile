@@ -6,8 +6,10 @@ gem 'rails', '3.0.10'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
+gem "nifty-generators", :group => :development
 gem "devise"
-gem "facebooker-rails3"
+gem "omniauth"
+gem "fb_graph"
 gem "mongrel"
 
 # Use unicorn as the web server
@@ -32,3 +34,4 @@ gem "mongrel"
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "mocha", :group => :test

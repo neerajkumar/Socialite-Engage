@@ -1,4 +1,6 @@
 SocialiteEngage::Application.routes.draw do
+  resources :authentications
+
   resources :posts
 
   get "homes/index"
@@ -6,6 +8,8 @@ SocialiteEngage::Application.routes.draw do
   devise_for :users
 
   root :to => 'homes#index'
+
+  match 'auth/:provider/callback' => 'authentications#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
