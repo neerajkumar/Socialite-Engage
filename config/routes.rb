@@ -1,5 +1,11 @@
 SocialiteEngage::Application.routes.draw do
+  resources :posts
+
+  get "homes/index"
+
   devise_for :users
+
+  root :to => 'homes#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

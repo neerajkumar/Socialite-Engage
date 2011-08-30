@@ -7,7 +7,8 @@ gem 'rails', '3.0.10'
 
 gem 'mysql'
 gem "devise"
-gem "cancan"
+gem "facebooker-rails3"
+gem "mongrel"
 
 # Use unicorn as the web server
 # gem 'unicorn'
