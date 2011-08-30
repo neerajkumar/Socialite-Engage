@@ -1,23 +1,21 @@
 class AuthenticationsController < ApplicationController
 
-  session[:omniauth] = omniauth
-
   def index
-    @authentications = Authentication.all
+    @authentications = current_user.authentications if current_user
   end
 
   def create
-    @authentication = Authentication.new(params[:authentication])
-    if @authentication.save
-      redirect_to authentications_url, :notice => "Successfully created authentication."
-    else
-      render :action => 'new'
-    end
+    debugger
+    auth = request.env["rack.auth"]
+    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
+    flash[:notice] = "Authentication successful."
+    redirect_to authentications_path
   end
 
   def destroy
-    @authentication = Authentication.find(params[:id])
+    @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
-    redirect_to authentications_url, :notice => "Successfully destroyed authentication."
+    flash[:notice] = "Successfully destroyed authentication."
+    redirect_to authentications_path
   end
 end
