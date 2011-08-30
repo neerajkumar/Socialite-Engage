@@ -1,0 +1,2 @@
+class AgentUser < User
+end
