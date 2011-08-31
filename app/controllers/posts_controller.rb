@@ -80,4 +80,9 @@ class PostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def publish
+    current_user.facebook.feed!(:message => params[:content], :name => params[:heading])
+    redirect_to posts_path, :notice => 'Successfully posted on your wall'
+  end
 end

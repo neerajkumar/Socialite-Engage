@@ -1,7 +1,11 @@
 SocialiteEngage::Application.routes.draw do
   resources :authentications
 
-  resources :posts
+  resources :posts do 
+    collection do 
+      post :publish
+    end
+  end
 
   get "homes/index"
 

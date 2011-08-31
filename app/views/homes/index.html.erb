@@ -2,6 +2,33 @@
 
 <% if current_user.is_a?(NormalUser) -%>
   <%= link_to "Login with Facebook", "http://localhost:3000/auth/facebook" -%>
+  <% @posts.each do |post| %>
+    <article class="clearfix">
+      <div class="avatar">
+        <fb:profile-pic uid="<%= post.from.identifier %>" size="square"></fb:profile-pic>
+      </div>
+      <p>
+	<fieldset style="width:50%">
+	  <legend><strong><%=post.from.name-%></strong></legend>
+	  <%= post.message || post.name || post.caption || post.description %>
+	  <div style="margin-top: 10px;">
+	    <% unless post.likes.blank? -%>
+	      <strong>Likes:</strong> <span style="font-style:italic"><%= post.likes.map(&:name).join(", ") -%></span>
+	    <% end %>
+	  </div>
+	  <div>
+	    <% unless post.comments.blank? -%>
+	      <strong>Comments:</strong> <br />
+	      <% post.comments.each do |c| -%>
+		<span style="font-style:italic"><%= "#{c.from.name}: #{c.message}"-%></span>
+	      <% end %>
+	    <% end %>
+	  </div>
+	</fieldset>
+             
+      </p>
+    </article>
+  <% end %>
 <% end %>
 <% if current_user.is_a?(AgentUser) -%>
   <%= link_to "New Post", new_post_path -%>

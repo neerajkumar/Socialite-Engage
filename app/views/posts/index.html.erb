@@ -1,21 +1,23 @@
 <h1>Listing posts</h1>
 
+<div style="color:green"><center><strong><%= flash[:notice] -%></strong></center></div>
+
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Heading</th>
+    <th>Content</th>
   </tr>
 
-<% @posts.each do |post| %>
+<% @posts.each do |p| %>
+  <%= form_tag(publish_posts_path, :method => :post) do -%>
   <tr>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= p.heading -%></td>
+    <td><%= p.content -%></td>
+    <%= hidden_field_tag :heading, p.heading -%>
+    <%= hidden_field_tag :content, p.content -%>
+
+    <td><%=submit_tag "Post It" -%></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Post', new_post_path %>

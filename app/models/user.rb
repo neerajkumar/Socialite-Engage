@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token)
+    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token) unless self.authentications.blank?
   end
 
   protected
