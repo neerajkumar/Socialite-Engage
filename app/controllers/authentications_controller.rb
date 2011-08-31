@@ -5,7 +5,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    omniauth = request.env["rack.auth"] || request.env["omniauth.auth"]
+    omniauth = request.env["rack.auth"]
     authentication = Authentication.find_by_provider_and_uid_and_token(omniauth['provider'], omniauth['uid'], omniauth['credentials']['token'])
     if authentication
       flash[:notice] = "Signed in successfully."
