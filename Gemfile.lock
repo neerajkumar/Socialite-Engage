@@ -170,6 +170,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   devise
   fb_graph
   mocha

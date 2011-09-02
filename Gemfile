@@ -10,6 +10,7 @@ gem "nifty-generators", :group => :development
 gem "devise"
 gem "omniauth"
 gem "fb_graph"
+gem "bcrypt-ruby", :require => "bcrypt"
 gem "mongrel"
 
 # Use unicorn as the web server
